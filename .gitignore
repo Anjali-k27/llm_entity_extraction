@@ -157,6 +157,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Local database state / generated Neo4j data
+alphafund-graph/neo4j_data/
+
 # Spyder project settings
 .spyderproject
 .spyproject
