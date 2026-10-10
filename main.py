@@ -23,7 +23,7 @@ raw_document_chunks = [
 ]
 print(f"[System] Loaded {len(raw_document_chunks)} unstructured text chunks.")
 
-print("[System] Initializing Gemini 2.5 Flash with Constrained Decoding...")
+print("[System] Initializing Gemini model with Constrained Decoding...")
 extraction_chain = build_extraction_chain()
 
 print("\n[System] Commencing Extraction & Ingestion Loop...")

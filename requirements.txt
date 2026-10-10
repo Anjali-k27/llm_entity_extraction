@@ -3,3 +3,4 @@ langchain-core
 neo4j
 python-dotenv
 pydantic
+numpy<2

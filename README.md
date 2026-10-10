@@ -1,6 +1,6 @@
 # knowledge-graph-primitives
 
-An autonomous knowledge graph extraction pipeline that ingests raw, unstructured text and builds a structured graph database using **Gemini 2.5 Flash**, **LangChain**, and **Neo4j**.
+An autonomous knowledge graph extraction pipeline that ingests raw, unstructured text and builds a structured graph database using **Gemini 3.8 Flash**, **LangChain**, and **Neo4j**.
 
 The pipeline reads plain text (e.g. financial transcripts, compliance reports), uses an LLM to extract named entities and their relationships into a validated schema, and commits the result to a Neo4j graph database — making multi-hop relational queries possible over unstructured data.
 
@@ -13,7 +13,7 @@ Raw Text Chunks
       │
       ▼
 ┌─────────────────────────────────┐
-│  Gemini 2.5 Flash (temp=0.0)    │  ← LangChain extraction chain
+│  Gemini 3.8 Flash (temp=0.0)    │  ← LangChain extraction chain
 │  + Pydantic structured output   │  ← constrains output to KnowledgeGraph schema
 └─────────────┬───────────────────┘
               │  KnowledgeGraph { nodes: [...], edges: [...] }
@@ -31,7 +31,7 @@ Raw Text Chunks
 ### Step-by-step
 
 1. **Load** — 4 raw text chunks (mock financial transcripts) are fed into the pipeline.
-2. **Extract** — Each chunk is sent to Gemini 2.5 Flash via LangChain with `temperature=0.0` for deterministic output. The LLM is forced to return a `KnowledgeGraph` Pydantic object — no free-form text, no hallucinated schema.
+2. **Extract** — Each chunk is sent to Gemini 3.8 Flash via LangChain with `temperature=0.0` for deterministic output. The LLM is forced to return a `KnowledgeGraph` Pydantic object — no free-form text, no hallucinated schema.
 3. **Validate** — The Pydantic schema constrains nodes to typed labels (`Person`, `Company`, `Document`) and edges to an explicit allowed vocabulary: `ACQUIRED`, `INVESTED_IN`, `COMPETES_WITH`, `WORKS_FOR`, `WROTE`, `MENTIONS`.
 4. **Ingest** — Nodes and edges are written to Neo4j using `MERGE` (idempotent — safe to re-run without creating duplicates).
 5. **Verify** — A multi-hop Cypher query traverses the graph to confirm the extracted relationships are correct.
