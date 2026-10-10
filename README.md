@@ -167,3 +167,8 @@ python main.py
 - **`python-dotenv`** — secrets never touch source code; loaded from `.env` at runtime.
 - **Pinned Neo4j image** (`neo4j:5.18.0`) — avoids silent breaking changes from `latest`.
 - **APOC plugin enabled** — required for advanced graph operations and future LLM-integrated export/import.
+
+  ## Output
+
+  <img width="815" height="597" alt="image" src="https://github.com/user-attachments/assets/2973b898-0aad-46d5-b450-96ecfc8cb56f" />
+
